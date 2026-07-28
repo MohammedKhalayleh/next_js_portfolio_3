@@ -1,9 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink, FolderOpen, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye, FolderOpen, X } from 'lucide-react';
 import { useReducedMotion } from '@/lib/hooks';
 import { cn } from '@/lib/constants';
 
@@ -94,21 +93,21 @@ function ProjectCard({ project, featured, onDetails, prefersReducedMotion, index
             <span key={technology} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{technology}</span>
           ))}
         </div>
-        <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
-          <button type="button" onClick={() => onDetails(project)} className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:bg-primary-light/5 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-primary-dark/50 dark:hover:bg-primary-dark/10 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40">
-            <FolderOpen size={16} />
-            Details
-          </button>
-          <a href={project.githubUrl || GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light dark:border-slate-600 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white dark:focus-visible:ring-primary-dark" aria-label={project.githubUrl ? `View the GitHub repository for ${project.title}` : `View GitHub profile for ${project.title}`}>
-            <GitHubIcon />
-            GitHub
-          </a>
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button-primary col-span-2 min-h-10 w-full px-3 py-2 text-sm">
-              Preview
-              <ExternalLink size={15} />
+        <div className="mt-auto pt-5">
+          <hr className="border-slate-200 dark:border-slate-700" />
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+            <button type="button" onClick={() => onDetails(project)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-slate-50 text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:bg-primary-light/5 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-primary-dark/50 dark:hover:bg-primary-dark/10 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label={`Open details for ${project.title}`} title="Project details">
+              <FolderOpen size={18} strokeWidth={1.9} />
+            </button>
+            <a href={project.githubUrl || GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-800 bg-slate-950 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light dark:border-slate-600 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white dark:focus-visible:ring-primary-dark" aria-label={project.githubUrl ? `View the GitHub repository for ${project.title}` : `View GitHub profile for ${project.title}`} title={project.githubUrl ? "View GitHub repository" : "View GitHub profile"}>
+              <GitHubIcon size={18} />
             </a>
-          )}
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex h-10 w-10 items-center justify-center p-0" aria-label={`Open live preview for ${project.title}`} title="Live preview">
+                <Eye size={18} strokeWidth={1.9} />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </article>
@@ -123,5 +122,5 @@ export default function ProjectsSection({ projects }) {
   if (!projects?.length) return null;
   const visibleProjects = projects.filter((project) => filter === 'All' || project.category === filter);
   const moveTab = (event, index) => { if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return; event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? FILTERS.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : FILTERS.length - 1)) % FILTERS.length; setFilter(FILTERS[next]); tabs.current[next]?.focus(); };
-  return <section id="projects" aria-labelledby="projects-heading" className="px-4 py-20"><div className="container-main"><div className="mb-8 flex items-center justify-between gap-4"><h2 id="projects-heading" className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">Projects</h2><Link href="/projects" className="button-ghost">View All</Link></div><div role="tablist" aria-label="Project categories" className="mb-8 flex flex-wrap gap-2">{FILTERS.map((item, index) => <button key={item} ref={(node) => { tabs.current[index] = node; }} type="button" role="tab" aria-selected={filter === item} tabIndex={filter === item ? 0 : -1} onClick={() => setFilter(item)} onKeyDown={(event) => moveTab(event, index)} className={cn('rounded-full px-4 py-2 text-sm font-semibold outline-none transition focus-visible:ring-2 focus-visible:ring-primary-light dark:focus-visible:ring-primary-dark', filter === item ? 'bg-primary-light text-white dark:bg-primary-dark dark:text-dark-bg' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800')}>{item}</button>)}</div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{visibleProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured={filter === 'All' && project.featured} onDetails={setDetailsProject} prefersReducedMotion={prefersReducedMotion} index={index} />)}</div></div><ProjectDetailsModal project={detailsProject} onClose={() => setDetailsProject(null)} /></section>;
+  return <section id="projects" aria-labelledby="projects-heading" className="px-4 py-20"><div className="container-main"><div className="mb-8"><h2 id="projects-heading" className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">Projects</h2></div><div role="tablist" aria-label="Project categories" className="mb-8 flex flex-wrap gap-2">{FILTERS.map((item, index) => <button key={item} ref={(node) => { tabs.current[index] = node; }} type="button" role="tab" aria-selected={filter === item} tabIndex={filter === item ? 0 : -1} onClick={() => setFilter(item)} onKeyDown={(event) => moveTab(event, index)} className={cn('rounded-full px-4 py-2 text-sm font-semibold outline-none transition focus-visible:ring-2 focus-visible:ring-primary-light dark:focus-visible:ring-primary-dark', filter === item ? 'bg-primary-light text-white dark:bg-primary-dark dark:text-dark-bg' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800')}>{item}</button>)}</div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{visibleProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured={filter === 'All' && project.featured} onDetails={setDetailsProject} prefersReducedMotion={prefersReducedMotion} index={index} />)}</div></div><ProjectDetailsModal project={detailsProject} onClose={() => setDetailsProject(null)} /></section>;
 }

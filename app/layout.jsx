@@ -5,12 +5,8 @@ import { cn } from '@/lib/constants';
 import '@/styles/globals.css';
 
 export default function RootLayout({ children }) {
-  const { theme, mounted } = useTheme();
+  const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
