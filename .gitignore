@@ -48,3 +48,7 @@ Thumbs.db
 # Private keys
 *.pem
 *.key
+
+# Local portfolio content
+mohammad_portfolio_content.json
+data/mohammad_portfolio_content.json
