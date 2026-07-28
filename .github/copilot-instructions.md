@@ -1,0 +1,15 @@
+- [ ] Install dependencies (`npm install`)
+- [ ] Configure Firebase in `.env.local`
+- [ ] Update portfolio content in `data/mohammad_portfolio_content.json`
+- [ ] Add certificates to `public/assets/certificates/`
+- [ ] Add profile image to `public/assets/profile.jpg`
+- [ ] Test locally (`npm run dev`) at http://localhost:3000
+- [ ] Run linter (`npm run lint`)
+- [ ] Build for production (`npm run build`)
+- [ ] Test production build (`npm start`)
+- [ ] Deploy to Firebase App Hosting (`firebase deploy`)
+- [ ] Test on real mobile devices
+- [ ] Set up custom domain
+- [ ] Configure analytics (optional)
+- [ ] Monitor Firestore contact messages
+- [ ] Create privacy and terms pages
