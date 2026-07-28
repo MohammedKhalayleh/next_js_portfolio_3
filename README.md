@@ -71,7 +71,6 @@ next_js_portfolio_3/
 ├── .env.example                # Environment template
 ├── next.config.js              # Next.js configuration
 ├── tailwind.config.js          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript config (for IDE)
 └── package.json                # Dependencies
 ```
 

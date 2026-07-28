@@ -20,7 +20,7 @@ export default function CertificatesSection({ certificates }) {
     <section id="certificates" className="py-16 px-4 bg-light-surface/50 dark:bg-dark-surface/50">
       <div className="container-main">
         <div className="mb-8">
-          <h2 className="text-4xl font-bold text-light-text dark:text-dark-text">
+          <h2 className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">
             Certifications
           </h2>
           

@@ -3,14 +3,39 @@
 import { useReducedMotion } from '@/lib/hooks';
 import ProfileImage from './ProfileImage';
 import { cn } from '@/lib/constants';
+import { Download, Mail } from 'lucide-react';
+
+function GitHubIcon({ size = 21, ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" {...props}>
+      <path d="M12 2.9a9.1 9.1 0 0 0-2.88 17.65c.46.09.62-.2.62-.43v-1.7c-2.53.55-3.06-1.07-3.06-1.07-.41-1.05-1.01-1.33-1.01-1.33-.82-.56.06-.55.06-.55.91.06 1.38.93 1.38.93.8 1.39 2.11.99 2.63.76.08-.6.32-1 .57-1.23-2.02-.23-4.15-1.01-4.15-4.5 0-1 .35-1.81.93-2.45-.1-.23-.4-1.16.09-2.41 0 0 .76-.24 2.5.93a8.65 8.65 0 0 1 4.55 0c1.73-1.17 2.49-.93 2.49-.93.5 1.25.19 2.18.1 2.41.57.64.92 1.45.92 2.45 0 3.5-2.14 4.26-4.17 4.49.33.29.62.85.62 1.72v2.55c0 .24.16.53.63.43A9.1 9.1 0 0 0 12 2.9Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ size = 21, strokeWidth = 1.8, ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M5 5.5A1.5 1.5 0 0 1 6.5 4h11A1.5 1.5 0 0 1 19 5.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 16.5v-11Z" />
+      <path d="M8.5 10v4.5M8.5 8v.01M11.5 14.5V10m0 1.8c.35-1.45 4-1.65 4 1.25v1.45" />
+    </svg>
+  );
+}
 
 export default function Hero({ content }) {
   const prefersReducedMotion = useReducedMotion();
   const personal = content?.personal || {};
+  const social = content?.social || {};
+  const email = social.email || personal.email;
+  const socialLinks = [
+    { label: 'Email', href: email ? `mailto:${email}` : undefined, icon: Mail },
+    { label: 'GitHub', href: social.github, icon: GitHubIcon, external: true },
+    { label: 'LinkedIn', href: social.linkedin, icon: LinkedInIcon, external: true },
+  ].filter((link) => link.href);
 
   return (
     <section
-      id="hero"
+      id="home"
       className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden"
     >
       {/* Background grid accent */}
@@ -53,16 +78,29 @@ export default function Hero({ content }) {
             </p>
 
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
+            <div className="flex flex-wrap items-center gap-3 pt-6 justify-center lg:justify-start">
               {personal.cvFile && (
                 <a href={personal.cvFile} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex items-center gap-2 shadow-xl transition-transform duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">
-                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9 2a1 1 0 00-1 1v6H6.414a1 1 0 00-.707 1.707l3.293 3.293a1 1 0 001.414 0l3.293-3.293A1 1 0 0013.586 9H11V3a1 1 0 00-1-1z" />
-                    <path d="M4 14a1 1 0 011-1h10a1 1 0 011 1v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2z" />
-                  </svg>
+                  <Download aria-hidden="true" size={17} strokeWidth={2} />
                   Download CV
                 </a>
               )}
+              {socialLinks.map(({ label, href, icon: Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  className={cn(
+                    'flex size-11 items-center justify-center rounded-xl border border-slate-200/80 bg-light-surface text-light-text shadow-sm outline-none transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700/80 dark:bg-dark-surface dark:text-dark-text dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40',
+                    prefersReducedMotion && 'transition-none'
+                  )}
+                >
+                  <Icon aria-hidden="true" size={30} strokeWidth={1} />
+                </a>
+              ))}
             </div>
           </div>
 

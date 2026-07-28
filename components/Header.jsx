@@ -8,7 +8,7 @@ import BurgerMenu from './BurgerMenu';
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,6 +18,28 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = SECTIONS
+      .map((section) => document.getElementById(section.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleSection) {
+          setActiveSection(visibleSection.target.id);
+        }
+      },
+      { rootMargin: '-20% 0px -65% 0px', threshold: [0.1, 0.3, 0.6] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -44,10 +66,10 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {SECTIONS.slice(0, 6).map((section) => (
+            {SECTIONS.slice(0, 7).map((section) => (
               <a
                 key={section.id}
-                href={`#${section.id}`}
+                href={section.id === 'home' ? '/' : `#${section.id}`}
                 className={`text-sm font-medium transition-colors duration-200 relative group ${
                   activeSection === section.id
                     ? 'text-primary-light dark:text-primary-dark'
@@ -81,7 +103,7 @@ export default function Header() {
             </button>
 
             {/* Mobile Menu Button */}
-            <BurgerMenu isOpen={menuOpen} onToggle={setMenuOpen} />
+            <BurgerMenu isOpen={menuOpen} onToggle={setMenuOpen} activeSection={activeSection} />
           </div>
         </nav>
       </header>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { SECTIONS } from '@/lib/constants';
 
-export default function BurgerMenu({ isOpen, onToggle }) {
+export default function BurgerMenu({ isOpen, onToggle, activeSection }) {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -67,11 +67,16 @@ export default function BurgerMenu({ isOpen, onToggle }) {
           style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
         >
           <nav className="p-6 flex flex-col gap-1">
-            {SECTIONS.slice(0, 6).map((section) => (
+            {SECTIONS.slice(0, 7).map((section) => (
               <a
                 key={section.id}
-                href={`#${section.id}`}
-                className="px-4 py-3 rounded-lg text-light-text dark:text-dark-text hover:bg-light-bg dark:hover:bg-dark-bg transition-colors duration-200 font-medium"
+                href={section.id === 'home' ? '/' : `#${section.id}`}
+                className={`px-4 py-3 rounded-lg transition-colors duration-200 font-medium ${
+                  activeSection === section.id
+                    ? 'bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark'
+                    : 'text-light-text hover:bg-light-bg dark:text-dark-text dark:hover:bg-dark-bg'
+                }`}
+                aria-current={activeSection === section.id ? 'page' : undefined}
                 onClick={() => onToggle(false)}
               >
                 {section.label}

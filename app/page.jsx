@@ -31,13 +31,13 @@ export default function Home() {
       <SignalPath />
       <main id="main-content" className="relative z-0">
         <Hero content={content} />
+        <AboutSection content={content} />
         <ProjectsSection projects={content.projects} />
         <EducationSection education={content.education} />
         <CertificatesSection certificates={content.certificates} />
         <SkillsSection skills={skills} />
-        {/* <AboutSection /> */}
         {/* <ExperienceSection /> */}
-        <ContactSection />
+        <ContactSection content={content} />
       </main>
       {/* <Footer /> */}
     </>

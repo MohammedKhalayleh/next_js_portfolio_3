@@ -17,7 +17,7 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="py-20 px-4">
       <div className="container-main">
-        <h2 className="text-4xl font-bold mb-12 text-light-text dark:text-dark-text">
+        <h2 className="mb-12 text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">
           Deployment Log
         </h2>
 

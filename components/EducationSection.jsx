@@ -17,7 +17,7 @@ export default function EducationSection({ education }) {
     <section id="education" className="py-20 px-4 bg-light-surface/50 dark:bg-dark-surface/50">
       <div className="container-main">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl font-bold text-light-text dark:text-dark-text">
+          <h2 className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">
             Education
           </h2>
         </div>

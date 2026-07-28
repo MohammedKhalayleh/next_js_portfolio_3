@@ -1,54 +1,51 @@
 'use client';
 
+import { Code2, Cpu, Globe2, GraduationCap } from 'lucide-react';
 import { useReducedMotion } from '@/lib/hooks';
 import { cn } from '@/lib/constants';
-import { getPortfolioContent } from '@/lib/content';
 
-export default function AboutSection() {
-  const prefersReducedMotion = useReducedMotion();
-  const content = getPortfolioContent();
-  const personal = content.personal || {};
+const HIGHLIGHT_ICONS = {
+  graduation: GraduationCap,
+  hardware: Cpu,
+  software: Code2,
+  international: Globe2,
+};
+
+function HighlightCard({ title, icon }) {
+  const Icon = HIGHLIGHT_ICONS[icon];
 
   return (
-    <section id="about" className="py-20 px-4 bg-light-surface/50 dark:bg-dark-surface/50">
-      <div className="container-main">
-        <h2 className="text-4xl font-bold mb-12 text-light-text dark:text-dark-text">
-          Architecture
-        </h2>
+    <li className="flex min-h-14 items-center gap-2.5 rounded-2xl border border-slate-200/80 bg-white/80 px-3 py-2 text-[13px] font-semibold leading-snug text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/40 hover:shadow-sm dark:border-slate-700/80 dark:bg-slate-950/70 dark:text-slate-100 dark:hover:border-primary-dark/50">
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark">
+        <Icon aria-hidden="true" size={18} strokeWidth={1.8} />
+      </span>
+      <span>{title}</span>
+    </li>
+  );
+}
 
-        <div className={cn(
-          'card space-y-6',
-          !prefersReducedMotion && 'animate-fade-in'
-        )}>
-          <div>
-            <h3 className="text-2xl font-semibold text-primary-light dark:text-primary-dark mb-4">
-              Professional Profile
-            </h3>
-            <p className="text-lg text-light-text dark:text-dark-text leading-relaxed max-w-3xl">
-              {personal.summary}
-            </p>
+export default function AboutSection({ content }) {
+  const prefersReducedMotion = useReducedMotion();
+  const about = content?.about;
+
+  if (!about) return null;
+
+  return (
+    <section id="about" aria-labelledby="about-heading" className="bg-light-surface/50 px-4 py-20 dark:bg-dark-surface/50">
+      <div className="container-main">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:items-start lg:gap-12">
+          <div className={cn('max-w-[52.5rem]', !prefersReducedMotion && 'animate-fade-in')}>
+            <h2 id="about-heading" className="text-3xl font-bold text-light-text dark:text-dark-text sm:text-4xl">{about.heading}</h2>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-light-muted dark:text-dark-muted sm:text-lg">
+              {about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
           </div>
 
-          {content.languages && content.languages.length > 0 && (
-            <div>
-              <h3 className="text-lg font-semibold text-secondary-light dark:text-secondary-dark mb-3">
-                Languages
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {content.languages.map((lang) => (
-                  <span
-                    key={lang.language}
-                    className="px-4 py-2 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-medium"
-                  >
-                    {lang.language}
-                    <span className="text-light-muted dark:text-dark-muted ml-2">
-                      {lang.level}
-                    </span>
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className={cn('lg:w-full lg:justify-self-end lg:pt-[4.25rem]', !prefersReducedMotion && 'animate-fade-in')}>
+            <ul aria-label="Professional highlights" className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-0 lg:grid-cols-1">
+              {about.highlights.map((highlight) => <HighlightCard key={highlight.title} {...highlight} />)}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
