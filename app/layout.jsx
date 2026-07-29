@@ -1,32 +1,36 @@
-'use client';
-
-import { useTheme, useReducedMotion } from '@/lib/hooks';
-import { cn } from '@/lib/constants';
 import '@/styles/globals.css';
+import ThemeRoot from '@/components/ThemeRoot';
+import { getSiteUrl, siteConfig } from '@/lib/site-config';
+
+const siteUrl = getSiteUrl();
+
+/** @type {import('next').Metadata} */
+export const metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  title: { default: siteConfig.defaultTitle, template: `%s | ${siteConfig.owner}` },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.owner }],
+  creator: siteConfig.owner,
+  publisher: siteConfig.owner,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    locale: siteConfig.locale,
+    url: '/',
+    siteName: siteConfig.name,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+  },
+  twitter: { card: 'summary_large_image', title: siteConfig.defaultTitle, description: siteConfig.description },
+  robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: '/assets/avatar/favicon.ico', type: 'image/x-icon' }],
+  },
+};
 
 export default function RootLayout({ children }) {
-  const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Mohammad Khalayleh - Computer Engineer, FPGA Design, Full-Stack Development" />
-        <meta name="theme-color" content={theme === 'dark' ? '#08111F' : '#F6F8F7'} />
-        <link rel="icon" type="image/x-icon" href="/assets/avatar/favicon.ico" />
-        <title>Mohammad Khalayleh | Computer Engineer</title>
-      </head>
-      <body className={cn(
-        'transition-colors duration-300',
-        prefersReducedMotion && 'motion-safe-disabled'
-      )}>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        {children}
-      </body>
-    </html>
+    <ThemeRoot>{children}</ThemeRoot>
   );
 }

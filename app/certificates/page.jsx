@@ -1,5 +1,11 @@
 import { getPortfolioContent } from '@/lib/content';
 
+export const metadata = {
+  title: 'Certificates & Credentials',
+  description: 'Professional certificates and credentials held by Mohammad Khalayleh.',
+  alternates: { canonical: '/certificates' },
+};
+
 export default function CertificatesPage() {
   const content = getPortfolioContent();
   const certificates = content.certificates || [];

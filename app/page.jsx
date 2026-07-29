@@ -9,24 +9,44 @@ import ExperienceSection from '@/components/ExperienceSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import CertificatesSection from '@/components/CertificatesSection';
 import ContactSection from '@/components/ContactSection';
+import StructuredData from '@/components/StructuredData';
 import { getPortfolioContent, getSkills } from '@/lib/content';
-
-export const metadata = {
-  title: 'Mohammad Khalayleh | Computer Engineer',
-  description: 'FPGA design, embedded systems, and full-stack development portfolio',
-  openGraph: {
-    title: 'Mohammad Khalayleh',
-    description: 'Computer Engineer - FPGA & Hardware Design | Full-Stack Development',
-    type: 'website',
-  },
-};
+import { getSiteUrl, siteConfig } from '@/lib/site-config';
 
 export default function Home() {
   const content = getPortfolioContent();
   const skills = getSkills();
+  const siteUrl = getSiteUrl();
+  const personal = content.personal || {};
+  const structuredData = siteUrl
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        url: siteUrl,
+        name: siteConfig.defaultTitle,
+        mainEntity: {
+          '@type': 'Person',
+          name: siteConfig.owner,
+          url: siteUrl,
+          jobTitle: siteConfig.title,
+          description: siteConfig.description,
+          ...(personal.profileImage ? { image: new URL(personal.profileImage, siteUrl).toString() } : {}),
+          sameAs: [siteConfig.github, siteConfig.linkedin].filter(Boolean),
+          knowsAbout: [
+            'FPGA Design',
+            'SystemVerilog',
+            'Hardware Verification',
+            'Embedded Systems',
+            'Software Development',
+            'Computer Networks',
+          ],
+        },
+      }
+    : null;
 
   return (
     <>
+      {structuredData && <StructuredData data={structuredData} />}
       <Header />
       <SignalPath />
       <main id="main-content" className="relative z-0">

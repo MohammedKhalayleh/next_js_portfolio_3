@@ -70,7 +70,7 @@ export default function BurgerMenu({ isOpen, onToggle, activeSection }) {
             {SECTIONS.slice(0, 7).map((section) => (
               <a
                 key={section.id}
-                href={section.id === 'home' ? '/' : `#${section.id}`}
+                href={section.id === 'home' ? '/' : `/#${section.id}`}
                 className={`px-4 py-3 rounded-lg transition-colors duration-200 font-medium ${
                   activeSection === section.id
                     ? 'bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark'

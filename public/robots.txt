@@ -1,7 +1,0 @@
-User-Agent: *
-Allow: /
-
-Disallow: /api/
-Disallow: /.next/
-
-Sitemap: https://example.com/sitemap.xml

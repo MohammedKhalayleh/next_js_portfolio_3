@@ -1,4 +1,5 @@
 import { ArrowUp, Download, Mail } from 'lucide-react';
+import Link from 'next/link';
 import { getPortfolioContent } from '@/lib/content';
 
 function GitHubIcon({ size = 18 }) {
@@ -35,7 +36,7 @@ export default function Footer() {
           <div>
             <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-light-text dark:text-dark-text">Quick Links</h2>
             <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-3">
-              {QUICK_LINKS.map((link) => <li key={link.label}><a href={link.href} className={linkClass}>{link.label}</a></li>)}
+              {QUICK_LINKS.map((link) => <li key={link.label}><Link href={link.href} className={linkClass}>{link.label}</Link></li>)}
             </ul>
           </div>
           <div>
@@ -50,7 +51,7 @@ export default function Footer() {
         </div>
         <div className="mt-10 flex flex-col gap-4 border-t border-light-muted/10 pt-6 text-sm text-light-muted dark:border-dark-muted/10 dark:text-dark-muted sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {currentYear} {personal.name}. All rights reserved.</p>
-          <a href="#home" className="inline-flex h-9 w-9 items-center justify-center self-start rounded-lg border border-slate-200 transition hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40 sm:self-auto" aria-label="Back to top" title="Back to top"><ArrowUp size={17} /></a>
+          <Link href="/#home" className="inline-flex h-9 w-9 items-center justify-center self-start rounded-lg border border-slate-200 transition hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40 sm:self-auto" aria-label="Back to top" title="Back to top"><ArrowUp size={17} /></Link>
         </div>
       </div>
     </footer>

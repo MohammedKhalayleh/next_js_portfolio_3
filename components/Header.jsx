@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/lib/hooks';
 import { SECTIONS } from '@/lib/constants';
@@ -54,21 +55,21 @@ export default function Header() {
       >
         <nav className="container-main flex items-center justify-between h-16">
           {/* Logo / Brand */}
-          <a
+          <Link
             href="/"
             className="flex items-center gap-2 font-display font-bold text-xl text-light-text dark:text-dark-text hover:text-primary-light dark:hover:text-primary-dark transition-colors"
             aria-label="Mohammad Khalayleh"
           >
             <Image src="/assets/avatar/favicon.ico" alt="Mohammad Khalayleh logo" width={25} height={25} className="h-11 w-11 rounded-lg object-contain" priority />
           
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {SECTIONS.slice(0, 7).map((section) => (
               <a
                 key={section.id}
-                href={section.id === 'home' ? '/' : `#${section.id}`}
+                href={section.id === 'home' ? '/' : `/#${section.id}`}
                 className={`text-sm font-medium transition-colors duration-200 relative group ${
                   activeSection === section.id
                     ? 'text-primary-light dark:text-primary-dark'

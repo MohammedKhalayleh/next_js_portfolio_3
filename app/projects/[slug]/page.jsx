@@ -1,5 +1,17 @@
 import { getProjectBySlug } from '@/lib/content';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
+
+export function generateMetadata({ params }) {
+  const project = getProjectBySlug(params.slug);
+  if (!project) return {};
+
+  return {
+    title: project.title,
+    description: project.shortDescription || project.overview,
+    alternates: { canonical: `/projects/${project.slug}` },
+  };
+}
 
 export default function ProjectPage({ params }) {
   const project = getProjectBySlug(params.slug);
@@ -12,9 +24,9 @@ export default function ProjectPage({ params }) {
     <main className="min-h-screen pt-20 px-4 py-20">
       <div className="container-main max-w-4xl">
         <header className="mb-12">
-          <a href="/projects" className="text-primary-light dark:text-primary-dark hover:underline mb-4 inline-block">
+          <Link href="/projects" className="text-primary-light dark:text-primary-dark hover:underline mb-4 inline-block">
             ← Back to Projects
-          </a>
+          </Link>
           <h1 className="text-5xl font-bold mb-4 text-light-text dark:text-dark-text">
             {project.title}
           </h1>

@@ -1,3 +1,10 @@
+import Link from 'next/link';
+
+export const metadata = {
+  title: 'Page Not Found',
+  robots: { index: false, follow: false },
+};
+
 export default function NotFound() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4 pt-20">
@@ -9,11 +16,11 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="text-lg text-light-muted dark:text-dark-muted mb-8">
-          The page you're looking for doesn't exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
-        <a href="/" className="button-primary">
+        <Link href="/" className="button-primary">
           Return Home
-        </a>
+        </Link>
       </div>
     </main>
   );
