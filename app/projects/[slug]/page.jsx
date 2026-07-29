@@ -1,4 +1,4 @@
-import { getProjectBySlug } from '@/lib/content';
+import { getPortfolioContent, getProjectBySlug } from '@/lib/content';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -11,6 +11,12 @@ export function generateMetadata({ params }) {
     description: project.shortDescription || project.overview,
     alternates: { canonical: `/projects/${project.slug}` },
   };
+}
+
+export function generateStaticParams() {
+  return (getPortfolioContent().projects || [])
+    .filter((project) => typeof project.slug === 'string' && project.slug.trim())
+    .map((project) => ({ slug: project.slug }));
 }
 
 export default function ProjectPage({ params }) {

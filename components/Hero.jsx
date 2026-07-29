@@ -85,22 +85,24 @@ export default function Hero({ content }) {
                   Download CV
                 </a>
               )}
-              {socialLinks.map(({ label, href, icon: Icon, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  title={label}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noopener noreferrer' : undefined}
-                  className={cn(
-                    'flex size-11 items-center justify-center rounded-xl border border-slate-200/80 bg-light-surface text-light-text shadow-sm outline-none transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700/80 dark:bg-dark-surface dark:text-dark-text dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40',
-                    prefersReducedMotion && 'transition-none'
-                  )}
-                >
-                  <Icon aria-hidden="true" size={30} strokeWidth={1} />
-                </a>
-              ))}
+              <div className="flex shrink-0 items-center gap-3">
+                {socialLinks.map(({ label, href, icon: Icon, external }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    title={label}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    className={cn(
+                      'flex size-11 items-center justify-center rounded-xl border border-slate-200/80 bg-light-surface text-light-text shadow-sm outline-none transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700/80 dark:bg-dark-surface dark:text-dark-text dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40',
+                      prefersReducedMotion && 'transition-none'
+                    )}
+                  >
+                    <Icon aria-hidden="true" size={30} strokeWidth={1} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 

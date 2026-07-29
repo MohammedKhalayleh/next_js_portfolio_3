@@ -1,6 +1,8 @@
 import { getPortfolioContent } from '@/lib/content';
 import { getSiteUrl } from '@/lib/site-config';
 
+export const dynamic = 'force-static';
+
 const LAST_UPDATED = new Date('2026-07-30T00:00:00.000Z');
 
 export default function sitemap() {
