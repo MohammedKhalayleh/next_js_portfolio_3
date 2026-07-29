@@ -25,6 +25,8 @@ dist/
 firebase-debug.log*
 firestore-debug.log*
 ui-debug.log*
+firebase-service-account.json
+firebase-adminsdk-*.json
 service-account*.json
 *serviceAccount*.json
 
@@ -49,6 +51,9 @@ Thumbs.db
 *.pem
 *.key
 
-# Local portfolio content
-mohammad_portfolio_content.json
-data/mohammad_portfolio_content.json
+# Local database exports and backups
+*.sql
+*.sqlite
+*.sqlite3
+*.bak
+*.backup

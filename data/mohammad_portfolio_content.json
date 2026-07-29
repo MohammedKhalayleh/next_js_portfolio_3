@@ -1,0 +1,747 @@
+{
+  "personal": {
+    "name": "Mohammad Khalayleh",
+    "title": "Computer Engineer",
+    "subtitle": "FPGA Design | Full-Stack Development",
+    "summary": "Computer Engineering graduate with expertise in FPGA-based hardware design, full-stack web development, and quality assurance. Passionate about building reliable, efficient digital systems from silicon to software.",
+    "location": "Jerusalem, Israel",
+    "email": "khalayleh.eng@gmail.com",
+    "availability": "Available",
+    "profileImage": "/assets/avatar/mk.jpg",
+    "cvFile": "/assets/resume.pdf"
+  },
+  "about": {
+    "label": "WHO I AM",
+    "heading": "About Me",
+    "paragraphs": [
+      "I am a Computer Engineering graduate with hands-on experience in FPGA design, digital systems, software development, networking, Linux, and cybersecurity. I enjoy building reliable solutions across hardware and software, with a strong interest in design verification, embedded systems, and infrastructure technologies.",
+      "My experience includes Verilog and SystemVerilog, FPGA development, simulation and verification, full-stack development, Windows Server, virtualization, networking, and security labs. Studying abroad in Sweden also strengthened my adaptability, teamwork, and communication in an international environment."
+    ],
+    "careerDirection": "I am currently focused on opportunities in hardware verification, FPGA and embedded systems, application engineering, cybersecurity, and software roles where I can continue learning and contribute to real engineering projects.",
+    "highlights": [
+      { "title": "Computer Engineering", "icon": "graduation" },
+      { "title": "FPGA & Verification", "icon": "hardware" },
+      { "title": "Software & Systems", "icon": "software" },
+      { "title": "International Experience", "icon": "international" }
+    ],
+    "technicalFocus": [
+      "Design Verification",
+      "Embedded Systems",
+      "Infrastructure Technologies"
+    ]
+  },
+  "skills": [
+    {
+      "id": "verilog",
+      "name": "Verilog/SystemVerilog",
+      "category": "Hardware Description Languages",
+      "level": "Advanced"
+    },
+    {
+      "id": "fpga",
+      "name": "FPGA Design",
+      "category": "FPGA Tools",
+      "level": "Advanced"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "Programming",
+      "level": "Advanced"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript/React",
+      "category": "Web Development",
+      "level": "Advanced"
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "Web Development",
+      "level": "Advanced"
+    },
+    {
+      "id": "firebase",
+      "name": "Firebase",
+      "category": "Databases",
+      "level": "Proficient"
+    }
+  ],
+  "education": [
+    {
+      "id": "alquds",
+      "institution": "Al-Quds University",
+      "degree": "Bachelor's Degree",
+      "field": "Computer Engineering",
+      "startDate": "2021-09",
+      "endDate": "2026-06",
+      "location": {
+        "city": "Jerusalem",
+        "country": "Israel"
+      },
+      "achievements": [
+        "GPA: 84.3%",
+        "Period of Education: 5 Years",
+        "Dean's List: 3 Semesters"
+      ]
+    },
+    {
+      "id": "malardale",
+      "institution": "Mälardalen University",
+      "degree": "Exchange Program",
+      "field": "Computer Engineering",
+      "startDate": "2025-01",
+      "endDate": "2025-06",
+      "location": {
+        "city": "Västerås",
+        "country": "Sweden"
+      },
+      "achievements": [
+        "Cybersecurity Operations",
+        "Programming of Reliable Embedded Systems",
+        "Artificial Intelligence"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "title": "Hardware Design Engineer Intern",
+      "company": "Tech Company",
+      "startDate": "2024-06",
+      "endDate": "2024-08",
+      "description": "Designed and verified RTL modules for FPGA implementation.",
+      "responsibilities": [
+        "Designed and verified Verilog RTL for cryptographic hardware",
+        "Performed timing analysis and optimized critical paths",
+        "Collaborated with team on system-level architecture"
+      ],
+      "isPlaceholder": false
+    }
+  ],
+  "projects": [
+    {
+      "id": "fpga-crypto",
+      "githubUrl": "https://github.com/MohammedKhalayleh/fpga-based-cryptographic-system",
+      "slug": "fpga-cryptographic-system",
+      "title": "FPGA-Based Cryptographic System",
+      "thumbnail": {
+        "src": "/assets/projects/FPGA-Based Cryptographic System/FPGA-Based Cryptographic System.png",
+        "alt": "FPGA-Based Cryptographic System preview"
+      },
+      "thumbnailFit": "contain",
+      "category": "Hardware",
+      "status": "FPGA Implemented",
+      "period": "2025–2026",
+      "purpose": "AES-128 CTR encryption and SHA-256 hashing implemented in SystemVerilog and deployed on a DE10-Standard Cyclone V FPGA.",
+      "overview": "A graduation project covering the design, simulation, optimization, and FPGA implementation of dedicated cryptographic hardware modules.",
+      "problem": "Software-only cryptography can add processing latency and CPU workload. This project explored FPGA acceleration while preserving correct, verifiable behavior.",
+      "implementation": "Dedicated RTL modules cover AES round processing, key expansion, counter-mode control, SHA-256 message padding, streaming data handling, finite-state-machine control, and verification testbenches.",
+      "role": "FPGA Hardware Designer and Verification Developer",
+      "responsibilities": [
+        "Designed the AES-128 CTR architecture, AES round module, key expansion, control FSM, and top-level FPGA integration.",
+        "Designed the SHA-256 processing core and message-padding logic.",
+        "Created self-checking simulation testbenches and debugged timing and control-flow behavior with waveforms.",
+        "Integrated and physically validated the cryptographic modules on the DE10-Standard Cyclone V board."
+      ],
+      "technologies": [
+        "SystemVerilog",
+        "FPGA",
+        "Intel Cyclone V",
+        "DE10-Standard",
+        "Quartus Prime Lite 21.1",
+        "ModelSim",
+        "AES-128 CTR",
+        "SHA-256",
+        "RTL Design",
+        "Finite State Machines",
+        "Digital Verification"
+      ],
+      "challenges": [
+        "Reducing processing cycles without breaking the AES algorithm or key schedule.",
+        "Synchronizing input-ready, output-ready, busy, and done control signals.",
+        "Implementing correct SHA-256 message padding and big-endian length encoding.",
+        "Debugging simulation timing and checking outputs at safe clock edges.",
+        "Adapting the design after an earlier version exceeded the resources of a smaller Cyclone IV FPGA."
+      ],
+      "keyResults": [
+        "Implemented AES-128 CTR encryption and SHA-256 hashing in hardware.",
+        "Reduced AES processing from 36 to 27 clock cycles per block.",
+        "Observed an AES block-processing time of approximately 480 ns.",
+        "Verified RTL modules with self-checking simulation testbenches.",
+        "Deployed and tested the final design on a Cyclone V FPGA board."
+      ],
+      "featured": true,
+      "screenshots": []
+    },
+    {
+      "id": "massbill",
+      "githubUrl": "https://github.com/MohammedKhalayleh/mass-bill-erp-system",
+      "slug": "massbill",
+      "title": "Mass Bill ERP System",
+      "thumbnail": { "src": "/assets/projects/MassBill/1.png", "alt": "Mass Bill ERP System preview" },
+      "category": "Web",
+      "status": "Live",
+      "period": "2022–2024",
+      "purpose": "An Arabic-language ERP web application for managing finance, accounting, transactions, and business assets.",
+      "overview": "Mass Bill supports Arabic-speaking businesses with centralized financial and operational workflows through a responsive web application.",
+      "problem": "Businesses need a clear place to organize accounting information, transactions, financial records, and assets—without compromising the Arabic-first experience.",
+      "implementation": "The team built Arabic ERP workflows for finance, accounting, transactions, and assets using React.js, Bootstrap, Node.js, and Firebase.",
+      "role": "Web Developer – Math Academy",
+      "responsibilities": [
+        "Built and improved reusable interface components with React.js and Bootstrap.",
+        "Worked on Arabic-language screens and right-to-left interface requirements.",
+        "Contributed to finance, accounting, transaction, and asset-management workflows.",
+        "Integrated application functionality with Firebase services and resolved UI and functional issues with the team."
+      ],
+      "technologies": [
+        "React.js",
+        "JavaScript",
+        "Bootstrap",
+        "Node.js",
+        "Firebase",
+        "HTML",
+        "CSS",
+        "Arabic RTL",
+        "Responsive Web Design"
+      ],
+      "challenges": [
+        "Creating a clear Arabic interface that supports right-to-left layouts.",
+        "Organizing multiple ERP workflows without making the interface difficult to use.",
+        "Maintaining consistent components and responsive behavior across pages.",
+        "Coordinating feature development within a team."
+      ],
+      "keyResults": [
+        "Contributed to an Arabic-language ERP platform for business management.",
+        "Implemented responsive and reusable interface components.",
+        "Supported finance, accounting, transaction, and asset workflows.",
+        "Gained practical experience in a collaborative development team."
+      ],
+      "featured": true,
+      "liveUrl": "https://massbill.com/",
+      "screenshots": []
+    },
+    {
+      "id": "prof-salaheddin-odeh-portfolio",
+      "githubUrl": "https://github.com/MohammedKhalayleh/prof-salaheddin-academic-portfolio",
+      "slug": "prof-salaheddin-odeh-portfolio",
+      "title": "Prof. Dr. Salaheddin Odeh Academic Portfolio",
+      "thumbnail": { "src": "/assets/projects/Prof-Salaheddin/1.png", "alt": "Prof. Dr. Salaheddin Odeh academic portfolio preview" },
+      "category": "Web",
+      "status": "Live",
+      "projectType": "Professional Academic Website",
+      "purpose": "A professional academic portfolio website designed and developed from scratch to present the professor’s academic career, research activities, achievements, and engineering background.",
+      "overview": "A responsive academic portfolio website created for Prof. Dr. Salaheddin Odeh. The website centralizes his academic career, professional experience, research activities, achievements, and engineering background within a clear and professionally structured digital presence.",
+      "problem": "The professor’s academic and professional information required a centralized online presence that would make it easier for students, researchers, universities, and professional contacts to explore his background and achievements.",
+      "solution": "A complete academic portfolio website was designed and developed from scratch using React.js, Firebase, JavaScript, and custom CSS. The website organizes the professor’s information into structured sections with responsive navigation and a professional interface across desktop, tablet, and mobile devices.",
+      "role": "Solo Web Developer and UI Designer",
+      "responsibilities": [
+        "Planned and developed the complete website independently from the initial concept to deployment.",
+        "Designed the website’s visual identity, layout, navigation, and content structure.",
+        "Built the complete user interface using React.js and reusable components.",
+        "Created all styling from scratch using custom CSS without relying on a prebuilt UI framework.",
+        "Implemented responsive layouts for desktop, tablet, and mobile devices.",
+        "Organized the professor’s academic, professional, research, and achievement-related content into clear sections.",
+        "Integrated the Firebase services required by the website.",
+        "Deployed and maintained the website using Firebase Hosting.",
+        "Tested the website across different screen sizes and resolved interface and responsiveness issues.",
+        "Improved the website’s usability, readability, and visual consistency."
+      ],
+      "systemFeatures": [
+        "Professional academic profile presentation.",
+        "Structured academic and career information.",
+        "Research and achievement presentation.",
+        "Responsive desktop, tablet, and mobile design.",
+        "Clear navigation between content sections.",
+        "Reusable React components.",
+        "Custom visual design and CSS styling.",
+        "Firebase deployment and hosting."
+      ],
+      "technologies": [
+        "React.js",
+        "JavaScript",
+        "Firebase",
+        "Firebase Hosting",
+        "HTML5",
+        "CSS3",
+        "Responsive Web Design"
+      ],
+      "challenges": [
+        "Organizing a large amount of academic and professional information without overwhelming visitors.",
+        "Designing a professional visual identity suitable for an experienced engineering professor.",
+        "Creating the complete responsive interface using custom CSS from scratch.",
+        "Maintaining consistent spacing, typography, and component behavior across different screen sizes.",
+        "Structuring the application into reusable React components while keeping the content easy to manage."
+      ],
+      "keyResults": [
+        "Designed and delivered the complete website independently.",
+        "Created a centralized professional academic presence for the professor.",
+        "Developed a fully custom interface without using a prebuilt CSS framework.",
+        "Delivered a responsive experience across desktop, tablet, and mobile devices.",
+        "Successfully deployed the production website using Firebase Hosting."
+      ],
+      "featured": true,
+      "sourceCodeVisible": false,
+      "liveUrl": "https://prof-salahodeh.web.app/",
+      "screenshots": []
+    },
+    {
+      "id": "qudscare",
+      "githubUrl": "https://github.com/MohammedKhalayleh/qudscare",
+      "slug": "qudscare",
+      "title": "QudsCare",
+      "thumbnail": { "src": "/assets/projects/QudsCare/1.png", "alt": "QudsCare application preview" },
+      "category": "Mobile",
+      "status": "Completed",
+      "projectType": "Educational Healthcare Application",
+      "purpose": "A cross-platform educational healthcare application developed for nursing, anesthesia, and pharmacy students at Al-Quds University, providing organized medication information and interactive learning resources.",
+      "overview": "QudsCare is an educational healthcare application designed for nursing, anesthesia, and pharmacy students at Al-Quds University. The application helps students access organized medication information, explore healthcare topics by specialization, and review essential academic content through a mobile-friendly and user-friendly interface.",
+      "problem": "Healthcare students often need to search through multiple books, documents, and online sources to find medication information relevant to their specialization. This makes studying slower and can make it difficult to quickly locate organized and relevant educational content.",
+      "solution": "QudsCare provides a centralized educational platform that organizes medications and healthcare information into specialized nursing, anesthesia, and pharmacy modules. It includes searchable medication content, structured clinical information, and offline access through a cross-platform application available for Android and the web.",
+      "role": "Solo Flutter Developer and UI Designer",
+      "responsibilities": [
+        "Planned, designed, and developed the complete application independently from the initial concept to deployment.",
+        "Designed the application structure, navigation flow, visual identity, and user experience from scratch.",
+        "Built the cross-platform application using Flutter and Dart.",
+        "Created specialized educational modules for nursing, anesthesia, and pharmacy students.",
+        "Developed reusable interface components for medication cards, categories, navigation, and detailed information screens.",
+        "Organized medication data into a structured and searchable format.",
+        "Implemented search functionality to help students quickly locate medications and educational content.",
+        "Implemented offline access so essential educational information remains available without a continuous internet connection.",
+        "Developed responsive layouts for different mobile screen sizes and web browsers.",
+        "Generated and tested the Android APK version of the application.",
+        "Built and deployed the web version using Firebase Hosting.",
+        "Tested the application and resolved navigation, layout, compatibility, and data-display issues."
+      ],
+      "systemFeatures": [
+        "Dedicated educational modules for Nursing, Anesthesia, and Pharmacy.",
+        "Structured medication information and therapeutic categories.",
+        "Medication search functionality.",
+        "Detailed educational medication pages.",
+        "Offline access to essential content.",
+        "Bottom navigation between Home, Medications, Systems, and Settings.",
+        "Responsive interface for Android devices and web browsers.",
+        "Cross-platform availability through a web application and Android APK.",
+        "User-friendly interface optimized for healthcare students."
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Firebase Hosting",
+        "JSON",
+        "Android",
+        "Web Application",
+        "Responsive UI Design"
+      ],
+      "challenges": [
+        "Organizing a large amount of medication information into clear and searchable educational categories.",
+        "Designing separate learning experiences for nursing, anesthesia, and pharmacy students within one application.",
+        "Creating a consistent interface that works across Android devices and web browsers.",
+        "Providing offline access while keeping medication data structured and easy to maintain.",
+        "Designing detailed healthcare content screens without overwhelming students.",
+        "Managing the complete design, development, testing, and deployment process independently."
+      ],
+      "keyResults": [
+        "Designed and developed the complete application independently from scratch.",
+        "Delivered a cross-platform educational application for Android and the web.",
+        "Created specialized learning modules for nursing, anesthesia, and pharmacy students.",
+        "Provided searchable and organized medication information within one platform.",
+        "Implemented offline access to support studying without a continuous internet connection.",
+        "Successfully generated an Android APK and deployed the web application using Firebase Hosting."
+      ],
+      "disclaimer": "QudsCare is intended for educational purposes and does not replace professional medical guidance or official clinical references.",
+      "featured": true,
+      "sourceCodeVisible": true,
+      "liveUrl": "https://qudscare.web.app/",
+      "screenshots": []
+    },
+    {
+      "id": "sooqna-ecommerce-marketplace",
+      "githubUrl": "https://github.com/MohammedKhalayleh/sooqna-ecommerce-marketplace",
+      "slug": "sooqna-ecommerce-marketplace",
+      "title": "SOOQNA – E-Commerce Marketplace",
+      "thumbnail": { "src": "/assets/projects/SOOQNA/1.png", "alt": "SOOQNA e-commerce marketplace preview" },
+      "category": "Web",
+      "status": "Academic Project",
+      "projectType": "University Full-Stack Software Project",
+      "purpose": "A full-stack multi-vendor e-commerce marketplace connecting customers and merchants, with support for credit cards, PayPal, cryptocurrency payments, and invoice generation.",
+      "overview": "SOOQNA is a university software project developed as a multi-vendor e-commerce marketplace. The platform allows merchants to list and manage products while customers can browse products, place orders, complete payments through multiple payment methods, and receive invoices.",
+      "problem": "Traditional e-commerce platforms may support only limited payment methods and often focus on a single seller. The project aimed to create a marketplace where multiple merchants could offer their products while customers could choose between conventional and cryptocurrency-based payment options.",
+      "solution": "A full-stack marketplace was developed using React.js, Node.js, Express.js, and a locally hosted MongoDB database. The platform provides separate customer and merchant workflows, product and order management, multiple payment integrations, and invoice generation.",
+      "role": "Project Manager and Full-Stack Developer",
+      "roleSummary": "Led the project and contributed to most of its core frontend, backend, database, payment, and business-logic functionality.",
+      "responsibilities": [
+        "Led the project and coordinated the implementation of its main features.",
+        "Planned the project structure, feature priorities, and development workflow.",
+        "Contributed to most of the frontend, backend, database, and integration work.",
+        "Adapted and customized an existing React.js e-commerce template to match the project requirements.",
+        "Developed and modified React components for customer and merchant workflows.",
+        "Implemented backend APIs using Node.js and Express.js.",
+        "Designed and managed the MongoDB data structure for users, merchants, products, orders, and payments.",
+        "Implemented customer and merchant account functionality.",
+        "Developed product listing, browsing, and purchasing workflows.",
+        "Integrated payment options for credit cards, PayPal, and cryptocurrencies.",
+        "Worked with Coinbase and CoinPayments cryptocurrency payment services.",
+        "Implemented invoice-generation functionality for completed orders.",
+        "Connected the frontend application with backend APIs and database operations.",
+        "Tested the application flows and resolved frontend, backend, and integration issues."
+      ],
+      "systemFeatures": [
+        "Separate customer and merchant account types.",
+        "Multi-vendor product marketplace.",
+        "Merchant product listing and management.",
+        "Customer product browsing and purchasing.",
+        "Shopping cart and order-management workflows.",
+        "Credit-card payment support.",
+        "PayPal payment integration.",
+        "Cryptocurrency payment support.",
+        "Coinbase payment integration.",
+        "CoinPayments integration.",
+        "Invoice generation for customer orders.",
+        "Frontend and backend communication through REST APIs.",
+        "Local MongoDB database storage."
+      ],
+      "technologies": [
+        "React.js",
+        "JavaScript",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "PayPal",
+        "Coinbase",
+        "CoinPayments",
+        "HTML5",
+        "CSS3"
+      ],
+      "challenges": [
+        "Supporting different workflows and permissions for customers and merchants.",
+        "Connecting multiple payment methods within one consistent checkout process.",
+        "Handling conventional and cryptocurrency payment flows.",
+        "Designing database relationships between users, merchants, products, orders, payments, and invoices.",
+        "Maintaining consistency between frontend state, backend operations, and database records.",
+        "Customizing an existing React template without being restricted by its original structure.",
+        "Leading the project while contributing to most of its technical implementation."
+      ],
+      "keyResults": [
+        "Led the development of a complete university e-commerce marketplace project.",
+        "Implemented a multi-vendor model supporting both customers and merchants.",
+        "Integrated conventional and cryptocurrency-based payment options.",
+        "Implemented invoice generation for customer orders.",
+        "Contributed across frontend development, backend APIs, database design, payment integration, and testing.",
+        "Gained practical experience managing a software project while working across the full application stack."
+      ],
+      "templateNote": "The frontend was based on an existing React.js e-commerce template that was customized and extended to support the project’s marketplace, payment, and business requirements.",
+      "paymentNote": "Payment integrations should be described as production or sandbox integrations according to the final tested configuration.",
+      "featured": true,
+      "sourceCodeVisible": false,
+      "screenshots": []
+    },
+    {
+      "id": "tms",
+      "githubUrl": "https://github.com/MohammedKhalayleh/tms-trip-management-system",
+      "slug": "trip-management-system",
+      "title": "TMS – Trip Management System",
+      "category": "Web",
+      "status": "Completed",
+      "projectType": "Private Production System",
+      "purpose": "A production trip-management platform for organizing travel packages, supplier coordination, quotations, and collaborative planning.",
+      "overview": "TMS is a real-world business application used by a travel and tourism company to manage the complete lifecycle of organized trips. It centralizes flight itineraries, hotels, transportation, transfers, tour guides, suppliers, and quotation preparation within one collaborative system.",
+      "problem": "Preparing a complete travel package requires coordinating flights, hotels, transportation, transfers, guides, and multiple service providers. Separate spreadsheets, messages, and emails make collaboration difficult and increase the possibility of missing or inconsistent information.",
+      "solution": "TMS provides a centralized workflow where authorized employees can create and manage complete travel itineraries, organize the required services, prepare structured quotations, and send requests to multiple suppliers from one system.",
+      "systemFeatures": [
+        "Create and manage complete trip itineraries and flight routes.",
+        "Organize hotels, transportation, transfers, and tour-guide services.",
+        "Manage the services and suppliers associated with each trip.",
+        "Prepare structured quotations for complete travel packages.",
+        "Send service requests and emails to multiple companies simultaneously.",
+        "Support secure access for multiple authorized employees.",
+        "Allow employees to collaborate on trip planning and management.",
+        "Centralize operational information in one business system."
+      ],
+      "challenges": [
+        "Organizing many interconnected travel services within one clear workflow.",
+        "Supporting collaboration between multiple employees.",
+        "Managing quotations composed of several services and suppliers.",
+        "Coordinating communication with multiple companies efficiently.",
+        "Protecting private company, customer, supplier, and quotation information."
+      ],
+      "keyResults": [
+        "Delivered a real production system for a travel and tourism company.",
+        "Centralized trip planning, service coordination, and quotation preparation.",
+        "Supported collaborative work between multiple authorized employees.",
+        "Reduced dependence on separate spreadsheets, messages, and manual workflows.",
+        "Created a structured process for managing complete travel packages."
+      ],
+      "privacyNote": "This is a private production system. Source code, customer information, supplier data, quotations, and internal company workflows are not publicly available.",
+      "technologies": [
+        "React.js",
+        "JavaScript",
+        "Firebase",
+        "Firebase Hosting",
+        "React Router",
+        "Bootstrap",
+        "Reactstrap",
+        "Sass / SCSS",
+        "EmailJS",
+        "jsPDF",
+        "Chart.js",
+        "Moment.js"
+      ],
+      "featured": true,
+      "sourceCodeVisible": true,
+      "images": [
+        {
+          "src": "/assets/projects/TMS/1.png",
+          "alt": "TMS dashboard with trip list",
+          "caption": "Dashboard view with an overview of trips and application navigation."
+        },
+        {
+          "src": "/assets/projects/TMS/2.png",
+          "alt": "TMS trip management screen",
+          "caption": "Trip-management screen showing the trip list and an add-trip form."
+        },
+        {
+          "src": "/assets/projects/TMS/3.png",
+          "alt": "TMS transport form",
+          "caption": "Transport entry form with contact and pricing sections."
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "pms-project-management-system",
+      "githubUrl": "https://github.com/MohammedKhalayleh/pms-project-management-system",
+      "slug": "pms-project-management-system",
+      "title": "PMS – Project Management System",
+      "category": "Java",
+      "status": "Academic Project",
+      "period": "2024",
+      "projectType": "University Java Desktop Project",
+      "purpose": "A Java desktop project-management system connected to an Oracle database, featuring role-based access for administrators and employees, task assignment, project tracking, secure password hashing, and dynamic data search.",
+      "overview": "PMS is a desktop project-management application designed to help an administrator manage projects, employees, users, and tasks through one centralized system. Employees access a separate dashboard where they can view the tasks assigned specifically to them.",
+      "problem": "Managing projects and employee tasks manually makes it difficult to track responsibilities, deadlines, progress, and task status. Employees also need a clear way to access only the tasks assigned to them, while administrators require complete control over users, projects, employees, and assignments.",
+      "solution": "A Java desktop application was developed and connected to an Oracle database. The system uses one authentication screen for all users, identifies the account type, and redirects administrators and employees to their appropriate dashboards. The administrator can manage system records and assign tasks, while employees can access their own assigned work.",
+      "role": "Java Desktop Developer and Oracle Database Integrator",
+      "roleSummary": "Developed the application logic, desktop user interface, Oracle database integration, role-based login workflow, task-management features, and dynamic table search.",
+      "responsibilities": [
+        "Developed the desktop application using Java and Java Swing.",
+        "Designed and implemented the application screens and navigation flow.",
+        "Connected the Java application to an Oracle database using JDBC.",
+        "Implemented a unified login screen for administrators and employees.",
+        "Developed logic that identifies the user role and opens the appropriate dashboard.",
+        "Implemented password hashing using the SHA-256 algorithm before storing passwords.",
+        "Created administrator functionality for managing users, employees, projects, and tasks.",
+        "Implemented task assignment so each employee receives their own tasks.",
+        "Developed employee-specific task views that display only the tasks assigned to the logged-in employee.",
+        "Implemented create, read, update, and delete operations for application records.",
+        "Added task priorities, statuses, start dates, end dates, and notes.",
+        "Developed dynamic search functionality across the data displayed in table cells.",
+        "Created dashboard statistics for projects, employees, completed tasks, and tasks in progress.",
+        "Tested and debugged database queries, authentication, permissions, and application workflows."
+      ],
+      "systemFeatures": [
+        "Single login screen for administrators and employees.",
+        "Role-based redirection after successful authentication.",
+        "Separate administrator and employee dashboards.",
+        "Administrator management of users, employees, projects, and tasks.",
+        "Employee-specific task lists.",
+        "Task assignment to individual employees.",
+        "Project creation and progress tracking.",
+        "Task priorities including High, Medium, and other supported levels.",
+        "Task statuses including Open, In Progress, Suspended, Completed, Later, and Cancelled.",
+        "Create, update, and delete operations.",
+        "Dashboard statistics and project summaries.",
+        "Search across all visible table-cell data.",
+        "Oracle database persistence.",
+        "SHA-256 password hashing.",
+        "Arabic desktop user interface."
+      ],
+      "technologies": [
+        "Java",
+        "Java Swing",
+        "Oracle Database",
+        "SQL",
+        "JDBC",
+        "SHA-256",
+        "NetBeans",
+        "Desktop Application Development"
+      ],
+      "challenges": [
+        "Connecting the Java desktop application to Oracle Database and configuring the database listener.",
+        "Implementing role-based login behavior using one authentication screen.",
+        "Ensuring employees could access only their assigned tasks.",
+        "Maintaining relationships between users, employees, projects, and tasks.",
+        "Building reusable CRUD operations for several database entities.",
+        "Implementing a flexible search feature that checks data across multiple table columns.",
+        "Displaying Arabic content and right-to-left layouts in a Java desktop interface.",
+        "Keeping dashboard statistics synchronized with the database records."
+      ],
+      "keyResults": [
+        "Delivered a functional desktop project-management application connected to Oracle Database.",
+        "Implemented separate workflows for administrators and employees.",
+        "Centralized project, employee, user, and task information.",
+        "Implemented employee-specific task assignment and tracking.",
+        "Added complete task-management operations including creation, modification, deletion, priority, and status updates.",
+        "Implemented dynamic searching across table data.",
+        "Added password hashing before storing account credentials."
+      ],
+      "securityNote": "Passwords are hashed using SHA-256 before being stored in the database. For a modern production system, a password-specific algorithm such as Argon2, bcrypt, or PBKDF2 with a unique salt would be preferred.",
+      "sourceCodeVisible": false,
+      "thumbnailFit": "cover",
+      "images": [
+        {
+          "src": "/assets/projects/PMS/1.png",
+          "alt": "PMS administrator dashboard",
+          "caption": "Administrator dashboard showing project, employee, and task statistics."
+        },
+        {
+          "src": "/assets/projects/PMS/3.png",
+          "alt": "PMS unified login screen",
+          "caption": "Unified login screen for administrators and employees."
+        },
+        {
+          "src": "/assets/projects/PMS/2.png",
+          "alt": "PMS task management table",
+          "caption": "Task-management interface with assignments, priorities, and status."
+        },
+        {
+          "src": "/assets/projects/PMS/4.png",
+          "alt": "PMS task editing form",
+          "caption": "Task editing form with dates, project, employee, priority, notes, and status."
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "2d-sprite-animation",
+      "slug": "2d-sprite-animation",
+      "title": "2D Sprite Animation",
+      "githubUrl": "https://github.com/MohammedKhalayleh/2d-sprite-animation",
+      "category": "Java",
+      "status": "Academic Project",
+      "projectType": "University Java Project",
+      "purpose": "An interactive Java-based 2D sprite animation application featuring 13 selectable characters, keyboard and mouse controls, and multiple animation states.",
+      "overview": "A university Java project developed to practice sprite animation, event handling, and interactive desktop application development. The application allows users to select and switch between 13 different characters, with each character supporting several animated actions controlled through the keyboard and mouse.",
+      "role": "Java Developer",
+      "responsibilities": [
+        "Implemented the sprite animation and frame-switching logic.",
+        "Developed a character-selection interface containing 13 playable characters.",
+        "Implemented character switching during application use.",
+        "Added keyboard and mouse event handling for character actions.",
+        "Implemented multiple animation states including idle, walking, running, jumping, attacking, hurt, prone, and death.",
+        "Created an instructions window displaying the controls available for the selected character.",
+        "Tested and debugged character selection, input handling, and animation transitions."
+      ],
+      "systemFeatures": [
+        "13 selectable animated characters.",
+        "Character-selection menu with visual previews.",
+        "Ability to switch between characters.",
+        "Keyboard and mouse controls.",
+        "Multiple attack animations.",
+        "Idle, walk, run, jump, hurt, prone, and death states.",
+        "Character-specific sprite animations.",
+        "In-application controls and instructions window.",
+        "Animated 2D background."
+      ],
+      "technologies": [
+        "Java",
+        "Java Swing",
+        "2D Graphics",
+        "Sprite Animation",
+        "Event Handling",
+        "Keyboard Input",
+        "Mouse Input"
+      ],
+      "challenges": [
+        "Managing different sprite sheets and animation frames for multiple characters.",
+        "Keeping character actions synchronized with keyboard and mouse input.",
+        "Switching characters without interrupting the application state.",
+        "Handling different animation sequences and frame counts for each character."
+      ],
+      "keyResults": [
+        "Created an interactive animation system supporting 13 characters.",
+        "Implemented multiple controllable animation states.",
+        "Developed a visual character-selection interface.",
+        "Practiced Java event handling, sprite management, and animation timing."
+      ],
+      "thumbnailFit": "cover",
+      "images": [
+        {
+          "src": "/assets/projects/2DSpriteAnimation/1.png",
+          "alt": "2D Sprite Animation main screen",
+          "caption": "Main animation screen with the selected character and available keyboard and mouse actions."
+        },
+        {
+          "src": "/assets/projects/2DSpriteAnimation/2.png",
+          "alt": "2D Sprite Animation character selection",
+          "caption": "Character-selection panel containing the available animated characters."
+        }
+      ],
+      "screenshots": []
+    }
+  ],
+  "certificates": [
+    {
+      "id": "responsive-web-design",
+      "title": "Responsive Web Design Developer Certification",
+      "issuer": "freeCodeCamp",
+      "date": "2026-06-30",
+      "file": "/assets/certificates/Certification_Web_Design_FreeCodeCamp.pdf",
+      "preview": "/assets/certificates/previews/responsive-web-design.webp",
+      "displayOriginal": true
+    },
+    {
+      "id": "ieeextreme-18",
+      "title": "IEEEXtreme 18.0 Certificate of Achievement",
+      "issuer": "IEEE",
+      "date": "2024-10-26",
+      "file": "/assets/certificates/IEEE_Certification.pdf",
+      "preview": "/assets/certificates/previews/ieeextreme-18.webp",
+      "displayOriginal": true
+    },
+    {
+      "id": "qa-certification",
+      "title": "Quality Assurance",
+      "issuer": "SFL Sigma Labs / Analiza Education Center",
+      "date": "2024-09-01",
+      "file": "/assets/certificates/QA_Mohammed Issa Awwad Khalayleh.pdf",
+      "preview": "/assets/certificates/previews/qa-certification.webp",
+      "displayOriginal": true
+    },
+    {
+      "id": "fullstack-math",
+      "title": "Full-Stack Web Development",
+      "issuer": "MATH Academy",
+      "date": "2022-09-01",
+      "file": "/assets/certificates/Full-StackMATH - FED Certification Mohammad Khalayleh FS8.pdf",
+      "preview": "/assets/certificates/previews/fullstack-math.webp",
+      "displayOriginal": true
+    }
+  ],
+  "languages": [
+    {
+      "language": "Arabic",
+      "level": "Native"
+    },
+    {
+      "language": "English",
+      "level": "Intermediate"
+    },
+    {
+      "language": "Hebrew",
+      "level": "Intermediate"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/mohammedkhalayleh",
+    "linkedin": "https://linkedin.com/in/mohammad-khalayleh",
+    "email": "khalayleh.eng@gmail.com"
+  },
+  "contact": {
+    "introduction": "I am open to job opportunities, internships, technical collaborations, and relevant projects where thoughtful hardware and software engineering can make a difference.",
+    "linkedinLabel": "Connect professionally",
+    "githubLabel": "View engineering work"
+  }
+}
