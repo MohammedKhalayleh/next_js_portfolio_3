@@ -1,126 +1,44 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Eye, FolderOpen, X } from 'lucide-react';
+import { CalendarDays, CheckCircle2, CircleAlert, Eye, FileText, LockKeyhole, Target, UserRound, Wrench, X } from 'lucide-react';
 import { useReducedMotion } from '@/lib/hooks';
 import { cn } from '@/lib/constants';
+import ProjectGallery from '@/components/projects/ProjectGallery';
+import ProjectThumbnail from '@/components/projects/ProjectThumbnail';
 
 const FILTERS = ['All', 'Hardware', 'Web', 'Mobile', 'Java'];
+const PROJECT_ORDER = ['fpga-crypto', 'tms', 'qudscare', 'sooqna-ecommerce-marketplace', 'prof-salaheddin-odeh-portfolio', 'massbill', 'pms-project-management-system', '2d-sprite-animation'];
+const FEATURED_FPGA_IDS = new Set(['fpga-crypto', 'fpga-based-cryptographic-system']);
 const GITHUB_PROFILE_URL = 'https://github.com/mohammedkhalayleh';
 const PROJECTS_WITHOUT_MEDIA = new Set(['tms', 'pms', 'sprite-animation']);
 const STATUS_STYLES = {
-  Live: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
-  Completed: 'bg-sky-500/10 text-sky-700 dark:text-sky-300',
-  'In Progress': 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
-  'Academic Project': 'bg-violet-500/10 text-violet-700 dark:text-violet-300',
-  'FPGA Implemented': 'bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark',
+  Live: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300', Completed: 'bg-sky-500/10 text-sky-700 dark:text-sky-300', 'In Progress': 'bg-amber-500/10 text-amber-700 dark:text-amber-300', 'Academic Project': 'bg-violet-500/10 text-violet-700 dark:text-violet-300', 'FPGA Implemented': 'bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark',
 };
 
-function GitHubIcon({ size = 16 }) {
-  return <svg aria-hidden="true" viewBox="0 0 24 24" width={size} height={size} fill="currentColor"><path d="M12 2.9a9.1 9.1 0 0 0-2.88 17.65c.46.09.62-.2.62-.43v-1.7c-2.53.55-3.06-1.07-3.06-1.07-.41-1.05-1.01-1.33-1.01-1.33-.82-.56.06-.55.06-.55.91.06 1.38.93 1.38.93.8 1.39 2.11.99 2.63.76.08-.6.32-1 .57-1.23-2.02-.23-4.15-1.01-4.15-4.5 0-1 .35-1.81.93-2.45-.1-.23-.4-1.16.09-2.41 0 0 .76-.24 2.5.93a8.65 8.65 0 0 1 4.55 0c1.73-1.17 2.49-.93 2.49-.93.5 1.25.19 2.18.1 2.41.57.64.92 1.45.92 2.45 0 3.5-2.14 4.26-4.17 4.49.33.29.62.85.62 1.72v2.55c0 .24.16.53.63.43A9.1 9.1 0 0 0 12 2.9Z" /></svg>;
-}
-
-function StatusBadge({ status }) {
-  return <span className={cn('rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em]', STATUS_STYLES[status])}>{status}</span>;
-}
-
-function ProjectMedia({ project, featured }) {
-  if (PROJECTS_WITHOUT_MEDIA.has(project.id)) return null;
-  const image = project.coverImage || project.screenshots?.[0]?.src || project.gif;
-  if (!image) return null;
-  return <div className={cn('relative aspect-[16/9] overflow-hidden border-b border-slate-200/80 bg-slate-100 dark:border-slate-700/80 dark:bg-slate-900', featured && 'lg:w-1/2 lg:border-b-0 lg:border-l')}><Image src={image} alt={project.screenshots?.[0]?.alt || `${project.title} preview`} fill sizes={featured ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 33vw, 100vw'} className="object-contain" /></div>;
-}
+function GitHubIcon({ size = 16 }) { return <svg aria-hidden="true" viewBox="0 0 24 24" width={size} height={size} fill="currentColor"><path d="M12 2.9a9.1 9.1 0 0 0-2.88 17.65c.46.09.62-.2.62-.43v-1.7c-2.53.55-3.06-1.07-3.06-1.07-.41-1.05-1.01-1.33-1.01-1.33-.82-.56.06-.55.06-.55.91.06 1.38.93 1.38.93.8 1.39 2.11.99 2.63.76.08-.6.32-1 .57-1.23-2.02-.23-4.15-1.01-4.15-4.5 0-1 .35-1.81.93-2.45-.1-.23-.4-1.16.09-2.41 0 0 .76-.24 2.5.93a8.65 8.65 0 0 1 4.55 0c1.73-1.17 2.49-.93 2.49-.93.5 1.25.19 2.18.1 2.41.57.64.92 1.45.92 2.45 0 3.5-2.14 4.26-4.17 4.49.33.29.62.85.62 1.72v2.55c0 .24.16.53.63.43A9.1 9.1 0 0 0 12 2.9Z" /></svg>; }
+function StatusBadge({ status }) { return <span className={cn('rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em]', STATUS_STYLES[status])}>{status}</span>; }
+function DetailList({ title, items, icon: Icon }) { return <section className="rounded-2xl border border-slate-200 p-5 dark:border-slate-700"><div className="flex items-center gap-2"><Icon size={18} className="text-secondary-light dark:text-secondary-dark" /><h3 className="text-sm font-bold text-light-text dark:text-dark-text">{title}</h3></div><ul className="mt-4 space-y-3">{items.map((item) => <li key={item} className="flex gap-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-light dark:bg-primary-dark" />{item}</li>)}</ul></section>; }
 
 function ProjectDetailsModal({ project, onClose }) {
-  const [index, setIndex] = useState(0);
-  const screenshots = PROJECTS_WITHOUT_MEDIA.has(project?.id) ? [] : project?.screenshots || [];
-  const temporaryDetails = {
-    tms: {
-      overview: 'Temporary example: summarize the trip-management workflow and the problem this project was designed to support.',
-      implementation: 'Temporary example: add the confirmed React.js and Firebase features, responsibilities, and implementation decisions here.',
-      results: 'Temporary example: replace this note with confirmed outcomes, screenshots, or lessons learned.',
-    },
-    pms: {
-      overview: 'Temporary example: summarize the project-management workflow supported by the desktop application.',
-      implementation: 'Temporary example: add the confirmed Java and Oracle Database functionality, responsibilities, and design decisions here.',
-      results: 'Temporary example: replace this note with confirmed outcomes, screenshots, or lessons learned.',
-    },
-    'sprite-animation': {
-      overview: 'Temporary example: summarize the animation behavior and visual interaction demonstrated by this project.',
-      implementation: 'Temporary example: add the confirmed Java, graphics, and animation implementation details here.',
-      results: 'Temporary example: replace this note with confirmed outcomes, screenshots, or lessons learned.',
-    },
-  }[project?.id];
-  useEffect(() => {
-    if (!project) return undefined;
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
-      if (event.key === 'ArrowRight' && screenshots.length > 1) setIndex((value) => (value + 1) % screenshots.length);
-      if (event.key === 'ArrowLeft' && screenshots.length > 1) setIndex((value) => (value - 1 + screenshots.length) % screenshots.length);
-    };
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', onKeyDown);
-    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKeyDown); };
-  }, [project, onClose, screenshots.length]);
+  useEffect(() => { if (!project) return undefined; const onKeyDown = (event) => { if (event.key === 'Escape') onClose(); }; document.body.style.overflow = 'hidden'; window.addEventListener('keydown', onKeyDown); return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKeyDown); }; }, [project, onClose]);
   if (!project) return null;
-  const screenshot = screenshots[index];
-  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 p-4" role="dialog" aria-modal="true" aria-label={`${project.title} details`} onMouseDown={onClose}><div className="relative w-full max-w-5xl overflow-hidden rounded-3xl bg-white p-6 shadow-2xl dark:bg-dark-surface" onMouseDown={(event) => event.stopPropagation()}><button type="button" onClick={onClose} className="absolute right-6 top-6 z-10 rounded-full bg-slate-950/75 p-2 text-white focus-visible:ring-2 focus-visible:ring-primary-light" aria-label="Close project details"><X size={20} /></button><div className="pr-12"><p className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-light dark:text-secondary-dark">{project.category}</p><h2 className="mt-2 text-2xl font-bold text-light-text dark:text-dark-text">{project.title}</h2><p className="mt-3 max-w-3xl text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.description || project.purpose}</p><div className="mt-4 flex flex-wrap gap-2">{project.technologies.map((technology) => <span key={technology} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{technology}</span>)}</div></div>{temporaryDetails && <div className="mt-6 grid gap-3 sm:grid-cols-3">{Object.entries(temporaryDetails).map(([label, value]) => <section key={label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/50"><h3 className="text-xs font-bold uppercase tracking-[0.12em] text-secondary-light dark:text-secondary-dark">{label}</h3><p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{value}</p></section>)}</div>}{screenshot && <div className="mt-6"><Image src={screenshot.src} alt={screenshot.alt} width={1600} height={900} className="max-h-[60vh] w-full object-contain" /></div>}{screenshots.length > 1 && <div className="mt-3 flex justify-between"><button type="button" onClick={() => setIndex((value) => (value - 1 + screenshots.length) % screenshots.length)} className="button-ghost" aria-label="Previous screenshot"><ChevronLeft size={18} /> Previous</button><button type="button" onClick={() => setIndex((value) => (value + 1) % screenshots.length)} className="button-ghost" aria-label="Next screenshot">Next <ChevronRight size={18} /></button></div>}</div></div>;
+  const list = (value) => Array.isArray(value) ? value : value ? [value] : [];
+  const sections = [{ title: 'The problem', content: project.problem, icon: Target }, { title: 'Approach', content: project.solution || project.implementation, icon: Wrench }].filter(({ content }) => content);
+  const responsibilities = list(project.responsibilities); const challenges = list(project.challenges); const results = list(project.keyResults || project.results);
+  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 px-4 pb-4 pt-20 sm:px-6 sm:pb-6 sm:pt-24" role="dialog" aria-modal="true" aria-label={`${project.title} details`} onMouseDown={onClose}><div className="relative flex max-h-[calc(100vh-6rem)] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-dark-surface sm:max-h-[calc(100vh-7.5rem)]" onMouseDown={(event) => event.stopPropagation()}><div className="overflow-y-auto p-5 sm:p-8"><button type="button" onClick={onClose} className="absolute right-5 top-5 z-10 rounded-full bg-slate-950/75 p-2 text-white focus-visible:ring-2 focus-visible:ring-primary-light" aria-label="Close project details"><X size={20} /></button><header className="border-b border-slate-200 pb-6 pr-12 dark:border-slate-700"><div className="flex flex-wrap items-center gap-2"><p className="text-xs font-bold uppercase tracking-[.16em] text-secondary-light dark:text-secondary-dark">{project.category}</p><StatusBadge status={project.status} />{project.projectType && <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.1em] text-slate-600 dark:bg-slate-900 dark:text-slate-300">{project.projectType}</span>}</div><h2 className="mt-3 text-2xl font-bold text-light-text dark:text-dark-text sm:text-3xl">{project.title}</h2><p className="mt-3 max-w-3xl text-sm leading-relaxed text-light-muted dark:text-dark-muted sm:text-base">{project.description || project.purpose}</p>{project.period && <div className="mt-5"><div className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3 dark:bg-slate-900/60"><CalendarDays size={18} className="shrink-0 text-secondary-light dark:text-secondary-dark" /><div><p className="text-[10px] font-bold uppercase tracking-[.12em] text-light-muted dark:text-dark-muted">Timeline</p><p className="text-sm font-medium text-light-text dark:text-dark-text">{project.period}</p></div></div></div>}</header>{project.overview && <section className="mt-6"><h3 className="text-sm font-bold text-light-text dark:text-dark-text">Overview</h3><p className="mt-2 max-w-4xl text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.overview}</p></section>}<ProjectGallery projectId={project.id} projectTitle={project.title} images={project.images || project.screenshots} />{project.role && <section className="mt-7 rounded-2xl border border-slate-200 p-5 dark:border-slate-700"><div className="flex items-center gap-2"><UserRound size={18} className="text-secondary-light dark:text-secondary-dark" /><h3 className="text-sm font-bold text-light-text dark:text-dark-text">My Role</h3></div><p className="mt-3 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.role}</p>{project.roleSummary && <p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.roleSummary}</p>}</section>}<div className="mt-6 grid gap-4 md:grid-cols-2">{sections.map(({ title, content, icon: Icon }) => <section key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-900/50"><Icon size={19} className="text-secondary-light dark:text-secondary-dark" /><h3 className="mt-3 text-sm font-bold text-light-text dark:text-dark-text">{title}</h3><p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{content}</p></section>)}</div>{project.systemFeatures?.length > 0 && <div className="mt-6"><DetailList title="System features" items={project.systemFeatures} icon={CheckCircle2} /></div>}{(responsibilities.length > 0 || challenges.length > 0 || results.length > 0) && <div className="mt-6 grid gap-5 lg:grid-cols-3">{responsibilities.length > 0 && <DetailList title="My contribution" items={responsibilities} icon={UserRound} />}{challenges.length > 0 && <DetailList title="Key challenges" items={challenges} icon={CircleAlert} />}{results.length > 0 && <DetailList title="Results" items={results} icon={CheckCircle2} />}</div>}{project.templateNote && <aside className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-light-muted dark:border-slate-700 dark:bg-slate-900/50 dark:text-dark-muted"><p className="font-bold text-light-text dark:text-dark-text">Template note</p><p className="mt-1">{project.templateNote}</p></aside>}{project.paymentNote && <aside className="mt-4 rounded-2xl border border-amber-300/60 bg-amber-50 p-4 text-sm leading-relaxed text-amber-950 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-100"><p className="font-bold">Payment note</p><p className="mt-1">{project.paymentNote}</p></aside>}{project.disclaimer && <aside className="mt-6 rounded-2xl border border-sky-300/60 bg-sky-50 p-4 text-sm leading-relaxed text-sky-950 dark:border-sky-500/30 dark:bg-sky-500/10 dark:text-sky-100"><p className="font-bold">Educational disclaimer</p><p className="mt-1">{project.disclaimer}</p></aside>}{project.privacyNote && <aside className="mt-6 flex gap-3 rounded-2xl border border-amber-300/60 bg-amber-50 p-4 text-sm leading-relaxed text-amber-950 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-100"><LockKeyhole size={18} className="mt-0.5 shrink-0" /><div><p className="font-bold">Private system</p><p className="mt-1">{project.privacyNote}</p></div></aside>}{project.technologies.length > 0 && <section className="mt-7"><h3 className="text-sm font-bold text-light-text dark:text-dark-text">Technology stack</h3><div className="mt-3 flex flex-wrap gap-2">{project.technologies.map((technology) => <span key={technology} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{technology}</span>)}</div></section>}</div></div></div>;
 }
 
 function ProjectCard({ project, featured, onDetails, prefersReducedMotion, index }) {
-  const hasMedia = Boolean(project.coverImage || project.screenshots?.[0]?.src || project.gif);
-  return (
-    <article
-      className={cn(
-        'h-full overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-light-surface shadow-sm shadow-slate-300/10 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/40 hover:shadow-xl dark:border-slate-700/80 dark:bg-dark-surface dark:shadow-slate-950/10 dark:hover:border-primary-dark/50',
-        featured && 'lg:col-span-2',
-        featured && hasMedia && 'lg:flex lg:flex-row-reverse',
-        !prefersReducedMotion && 'animate-fade-in'
-      )}
-      style={!prefersReducedMotion ? { animationDelay: `${index * 50}ms` } : undefined}
-    >
-      <ProjectMedia project={project} featured={featured && hasMedia} />
-      <div className={cn('flex h-full flex-col p-5', featured && hasMedia && 'lg:w-1/2')}>
-        <div className="flex items-start justify-between gap-3">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-secondary-light dark:text-secondary-dark">{project.category}</p>
-          <StatusBadge status={project.status} />
-        </div>
-        <h3 className="mt-3 text-xl font-bold text-light-text dark:text-dark-text">{project.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.description || project.purpose}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.technologies.map((technology) => (
-            <span key={technology} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{technology}</span>
-          ))}
-        </div>
-        <div className="mt-auto pt-5">
-          <hr className="border-slate-200 dark:border-slate-700" />
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            <button type="button" onClick={() => onDetails(project)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-slate-50 text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:bg-primary-light/5 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-primary-dark/50 dark:hover:bg-primary-dark/10 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label={`Open details for ${project.title}`} title="Project details">
-              <FolderOpen size={18} strokeWidth={1.9} />
-            </button>
-            <a href={project.githubUrl || GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-800 bg-slate-950 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light dark:border-slate-600 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white dark:focus-visible:ring-primary-dark" aria-label={project.githubUrl ? `View the GitHub repository for ${project.title}` : `View GitHub profile for ${project.title}`} title={project.githubUrl ? "View GitHub repository" : "View GitHub profile"}>
-              <GitHubIcon size={18} />
-            </a>
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex h-10 w-10 items-center justify-center p-0" aria-label={`Open live preview for ${project.title}`} title="Live preview">
-                <Eye size={18} strokeWidth={1.9} />
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </article>
-  );
+  const visibleTechnologies = featured ? project.technologies : project.technologies.slice(0, 6);
+  const additionalTechnologyCount = project.technologies.length - visibleTechnologies.length;
+  return <article className={cn('flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-light-surface shadow-sm shadow-slate-300/10 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/40 hover:shadow-xl dark:border-slate-700/80 dark:bg-dark-surface dark:shadow-slate-950/10 dark:hover:border-primary-dark/50', featured && 'lg:col-span-2', featured && 'lg:flex-row', !prefersReducedMotion && 'animate-fade-in')} style={!prefersReducedMotion ? { animationDelay: `${index * 50}ms` } : undefined}><ProjectThumbnail project={project} featured={featured} /><div className={cn('flex flex-1 flex-col p-5', featured && 'lg:w-1/2')}><div className="flex items-start justify-between gap-3"><p className="text-xs font-bold uppercase tracking-[.16em] text-secondary-light dark:text-secondary-dark">{project.category}</p><StatusBadge status={project.status} /></div><h3 className="mt-3 text-xl font-bold text-light-text dark:text-dark-text">{project.title}</h3><p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-dark-muted">{project.description || project.purpose}</p>{project.technologies.length > 0 && <div className="mt-4 flex flex-wrap gap-2">{visibleTechnologies.map((technology) => <span key={technology} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{technology}</span>)}{additionalTechnologyCount > 0 && <span className="rounded-full border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:border-slate-600 dark:text-slate-300">+{additionalTechnologyCount} more</span>}</div>}<div className="mt-auto pt-5"><hr className="border-slate-200 dark:border-slate-700" /><div className="mt-4 flex flex-wrap items-center justify-center gap-2"><button type="button" onClick={() => onDetails(project)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-slate-50 text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-primary-light/50 hover:bg-primary-light/5 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-primary-dark/50 dark:hover:bg-primary-dark/10 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label={`View details for ${project.title}`} title="View Details"><FileText size={18} strokeWidth={1.9} aria-hidden="true" /></button><a href={project.githubUrl || GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-800 bg-slate-950 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light dark:border-slate-600 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white dark:focus-visible:ring-primary-dark" aria-label={project.githubUrl ? `View the GitHub repository for ${project.title}` : `View GitHub profile for ${project.title}`} title={project.githubUrl ? 'View GitHub repository' : 'View GitHub profile'}><GitHubIcon size={18} /></a>{project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex h-10 w-10 items-center justify-center p-0" aria-label={`Open live preview for ${project.title}`} title="Live preview"><Eye size={18} strokeWidth={1.9} /></a>}</div></div></div></article>;
 }
 
 export default function ProjectsSection({ projects }) {
-  const prefersReducedMotion = useReducedMotion();
-  const [filter, setFilter] = useState('All');
-  const [detailsProject, setDetailsProject] = useState(null);
-  const tabs = useRef([]);
+  const prefersReducedMotion = useReducedMotion(); const [filter, setFilter] = useState('All'); const [detailsProject, setDetailsProject] = useState(null); const tabs = useRef([]);
   if (!projects?.length) return null;
-  const visibleProjects = projects.filter((project) => filter === 'All' || project.category === filter);
+  const visibleProjects = projects.filter((project) => filter === 'All' || project.category === filter).sort((a, b) => { const aIndex = PROJECT_ORDER.indexOf(a.id); const bIndex = PROJECT_ORDER.indexOf(b.id); return (aIndex === -1 ? PROJECT_ORDER.length : aIndex) - (bIndex === -1 ? PROJECT_ORDER.length : bIndex); });
   const moveTab = (event, index) => { if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return; event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? FILTERS.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : FILTERS.length - 1)) % FILTERS.length; setFilter(FILTERS[next]); tabs.current[next]?.focus(); };
-  return <section id="projects" aria-labelledby="projects-heading" className="px-4 py-20"><div className="container-main"><div className="mb-8"><h2 id="projects-heading" className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">Projects</h2></div><div role="tablist" aria-label="Project categories" className="mb-8 flex flex-wrap gap-2">{FILTERS.map((item, index) => <button key={item} ref={(node) => { tabs.current[index] = node; }} type="button" role="tab" aria-selected={filter === item} tabIndex={filter === item ? 0 : -1} onClick={() => setFilter(item)} onKeyDown={(event) => moveTab(event, index)} className={cn('rounded-full px-4 py-2 text-sm font-semibold outline-none transition focus-visible:ring-2 focus-visible:ring-primary-light dark:focus-visible:ring-primary-dark', filter === item ? 'bg-primary-light text-white dark:bg-primary-dark dark:text-dark-bg' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800')}>{item}</button>)}</div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{visibleProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured={filter === 'All' && project.featured} onDetails={setDetailsProject} prefersReducedMotion={prefersReducedMotion} index={index} />)}</div></div><ProjectDetailsModal project={detailsProject} onClose={() => setDetailsProject(null)} /></section>;
+  return <section id="projects" aria-labelledby="projects-heading" className="px-4 py-20"><div className="container-main max-w-7xl"><div className="mb-8"><h2 id="projects-heading" className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">Projects</h2></div><div role="tablist" aria-label="Project categories" className="mb-8 flex flex-wrap gap-2">{FILTERS.map((item, index) => <button key={item} ref={(node) => { tabs.current[index] = node; }} type="button" role="tab" aria-selected={filter === item} tabIndex={filter === item ? 0 : -1} onClick={() => setFilter(item)} onKeyDown={(event) => moveTab(event, index)} className={cn('rounded-full px-4 py-2 text-sm font-semibold outline-none transition focus-visible:ring-2 focus-visible:ring-primary-light dark:focus-visible:ring-primary-dark', filter === item ? 'bg-primary-light text-white dark:bg-primary-dark dark:text-dark-bg' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800')}>{item}</button>)}</div><div className="grid grid-cols-1 gap-5 md:grid-cols-2">{visibleProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured={FEATURED_FPGA_IDS.has(project.id)} onDetails={setDetailsProject} prefersReducedMotion={prefersReducedMotion} index={index} />)}</div></div><ProjectDetailsModal project={detailsProject} onClose={() => setDetailsProject(null)} /></section>;
 }

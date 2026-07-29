@@ -35,7 +35,7 @@ export default function AboutSection({ content }) {
       <div className="container-main">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:items-start lg:gap-12">
           <div className={cn('max-w-[52.5rem]', !prefersReducedMotion && 'animate-fade-in')}>
-            <h2 id="about-heading" className="text-3xl font-bold text-light-text dark:text-dark-text sm:text-4xl">{about.heading}</h2>
+            <h2 id="about-heading" className="text-left text-4xl font-bold text-light-text dark:text-dark-text sm:text-5xl">{about.heading}</h2>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-light-muted dark:text-dark-muted sm:text-lg">
               {about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>

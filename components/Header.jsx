@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/lib/hooks';
 import { SECTIONS } from '@/lib/constants';
@@ -58,10 +59,8 @@ export default function Header() {
             className="flex items-center gap-2 font-display font-bold text-xl text-light-text dark:text-dark-text hover:text-primary-light dark:hover:text-primary-dark transition-colors"
             aria-label="Mohammad Khalayleh"
           >
-            <span className="w-8 h-8 bg-primary-light dark:bg-primary-dark rounded-lg flex items-center justify-center text-white text-sm font-bold">
-              MK
-            </span>
-            <span className="hidden sm:inline">MK</span>
+            <Image src="/assets/avatar/favicon.ico" alt="Mohammad Khalayleh logo" width={25} height={25} className="h-11 w-11 rounded-lg object-contain" priority />
+          
           </a>
 
           {/* Desktop Navigation */}

@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Mohammad Khalayleh - Computer Engineer, FPGA Design, Full-Stack Development" />
         <meta name="theme-color" content={theme === 'dark' ? '#08111F' : '#F6F8F7'} />
+        <link rel="icon" type="image/x-icon" href="/assets/avatar/favicon.ico" />
         <title>Mohammad Khalayleh | Computer Engineer</title>
       </head>
       <body className={cn(
