@@ -11,6 +11,7 @@ build/
 .next/
 out/
 dist/
+backups/
 
 # Environment variables and secrets
 .env
