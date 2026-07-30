@@ -41,8 +41,8 @@
     "buttons": [
       { "label": "View Projects", "href": "/projects", "type": "primary" },
       {
-        "label": "Download CV",
-        "href": "/assets/cv/Mohammad-Khalayleh-CV.pdf",
+        "label": "Download Resume",
+        "href": "/assets/Resume_MK.pdf",
         "type": "secondary"
       },
       { "label": "Contact Me", "href": "/#contact", "type": "secondary" }
@@ -254,8 +254,8 @@
     ]
   },
   "cv": {
-    "downloadLabel": "Download CV",
-    "file": "/assets/cv/Resume.pdf"
+    "downloadLabel": "Download Resume",
+    "file": "/assets/Resume_MK.pdf"
   },
   "contact": {
     "title": "Open Channel",

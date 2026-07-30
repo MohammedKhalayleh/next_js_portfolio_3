@@ -82,7 +82,7 @@ export default function Hero({ content }) {
               {personal.cvFile && (
                 <a href={personal.cvFile} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex items-center gap-2 shadow-xl transition-transform duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">
                   <Download aria-hidden="true" size={17} strokeWidth={2} />
-                  Download CV
+                   Resume
                 </a>
               )}
               <div className="flex shrink-0 items-center gap-3">
