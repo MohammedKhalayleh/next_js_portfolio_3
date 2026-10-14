@@ -3,7 +3,7 @@
 import { useReducedMotion } from '@/lib/hooks';
 import ProfileImage from './ProfileImage';
 import { cn } from '@/lib/constants';
-import { Download, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 function GitHubIcon({ size = 21, ...props }) {
   return (
@@ -79,12 +79,6 @@ export default function Hero({ content }) {
 
             {/* CTA Button */}
             <div className="flex flex-wrap items-center gap-3 pt-6 justify-center lg:justify-start">
-              {personal.cvFile && (
-                <a href={personal.cvFile} target="_blank" rel="noopener noreferrer" className="button-primary inline-flex items-center gap-2 shadow-xl transition-transform duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl">
-                  <Download aria-hidden="true" size={17} strokeWidth={2} />
-                   Resume
-                </a>
-              )}
               <div className="flex shrink-0 items-center gap-3">
                 {socialLinks.map(({ label, href, icon: Icon, external }) => (
                   <a

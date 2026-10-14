@@ -1,4 +1,4 @@
-import { ArrowUp, Download, Mail } from 'lucide-react';
+import { ArrowUp, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { getPortfolioContent } from '@/lib/content';
 
@@ -45,7 +45,6 @@ export default function Footer() {
               {email && <a href={`mailto:${email}`} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-light-muted transition hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:text-dark-muted dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label="Email"><Mail size={18} /></a>}
               {social.linkedin && <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-light-muted transition hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:text-dark-muted dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label="LinkedIn"><LinkedInIcon /></a>}
               {social.github && <a href={social.github} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-light-muted transition hover:-translate-y-0.5 hover:border-primary-light/50 hover:text-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:border-slate-700 dark:text-dark-muted dark:hover:border-primary-dark/50 dark:hover:text-primary-dark dark:focus-visible:ring-primary-dark/40" aria-label="GitHub"><GitHubIcon /></a>}
-              {personal.cvFile && <a href={personal.cvFile} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-primary-light px-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary-light/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40 dark:bg-primary-dark dark:text-dark-bg dark:hover:bg-primary-dark/90 dark:focus-visible:ring-primary-dark/40"><Download size={16} /> Resume</a>}
             </div>
           </div>
         </div>

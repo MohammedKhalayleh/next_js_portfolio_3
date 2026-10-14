@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/lib/hooks';
@@ -60,7 +59,11 @@ export default function Header() {
             className="flex items-center gap-2 font-display font-bold text-xl text-light-text dark:text-dark-text hover:text-primary-light dark:hover:text-primary-dark transition-colors"
             aria-label="Mohammad Khalayleh"
           >
-            <Image src="/assets/avatar/favicon.ico" alt="Mohammad Khalayleh logo" width={25} height={25} className="h-11 w-11 rounded-lg object-contain" priority />
+            <span
+              aria-hidden="true"
+              className="h-11 w-11 rounded-lg bg-contain bg-center bg-no-repeat"
+              style={{ backgroundImage: "url('/assets/avatar/favicon.ico')" }}
+            />
           
           </Link>
 

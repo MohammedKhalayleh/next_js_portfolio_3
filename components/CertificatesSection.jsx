@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { useReducedMotion } from '@/lib/hooks';
 import { cn } from '@/lib/constants';
@@ -40,10 +41,12 @@ export default function CertificatesSection({ certificates }) {
               >
                 <div className="relative h-64 overflow-hidden bg-light-surface dark:bg-dark-bg sm:h-72 lg:h-80 xl:h-84">
                   {imagePath ? (
-                    <img
+                    <Image
                       src={imagePath}
                       alt={cert.title}
-                      className="absolute inset-0 h-full w-full object-cover object-center transition duration-300 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 34rem"
+                      className="object-cover object-center transition duration-300 group-hover:scale-105"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center text-center text-sm text-light-muted dark:text-dark-muted">
@@ -106,11 +109,16 @@ export default function CertificatesSection({ certificates }) {
             >
               ×
             </button>
-            <img
-              src={activeImage}
-              alt="Certificate preview"
-              className="h-[80vh] w-full object-contain"
-            />
+            <div className="relative h-[80vh] w-full">
+              <Image
+                src={activeImage}
+                alt="Certificate preview"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 64rem"
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
       )}
